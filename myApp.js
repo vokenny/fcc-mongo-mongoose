@@ -4,7 +4,15 @@ const mongoose = require('mongoose');
 const mongoUri = process.env.MONGO_URI;
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 
-let Person;
+const personSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  age: Number,
+  favoriteFoods: [String],
+});
+
+const PersonModel = mongoose.model('Person', personSchema);
+
+let Person = new PersonModel({ name: 'Test Name' });
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
