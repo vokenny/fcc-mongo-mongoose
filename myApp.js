@@ -12,6 +12,12 @@ const personSchema = new mongoose.Schema({
 
 const Person = mongoose.model('Person', personSchema);
 
+const people = [
+  { name: 'Spongebob Squarepants' },
+  { name: 'Patrick Star' },
+  { name: 'Squidward Tentacles' },
+];
+
 const createAndSavePerson = (done) => {
   const person = new Person({
     name: 'Kenny Vo',
@@ -27,7 +33,11 @@ const createAndSavePerson = (done) => {
 };
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, function (err, data) {
+    if (err) return console.error(err);
+
+    done(null, data);
+  });
 };
 
 const findPeopleByName = (personName, done) => {
