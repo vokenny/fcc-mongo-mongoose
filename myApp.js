@@ -19,10 +19,10 @@ const createAndSavePerson = (done) => {
     favoriteFoods: ['Banh mi'],
   });
 
-  person.save(function (err, data) {
+  person.save(function (err, person) {
     if (err) return console.error(err);
 
-    done(null, data);
+    done(null, person);
   });
 };
 
@@ -41,7 +41,12 @@ const createManyPeople = (arrayOfPeople, done) => {
 };
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  const targetPerson = { name: personName };
+  Person.find(targetPerson, function (err, foundPerson) {
+    if (err) return console.error(err);
+
+    done(null, foundPerson);
+  });
 };
 
 const findOneByFood = (food, done) => {
