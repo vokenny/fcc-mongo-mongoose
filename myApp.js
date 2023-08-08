@@ -26,21 +26,19 @@ const createAndSavePerson = (done) => {
   });
 };
 
-const createManyPeople = (arrayOfPeople, done) => {
-  Person.create(arrayOfPeople, function (err, data) {
-    if (err) return console.error(err);
-
-    done(null, data);
-  });
-};
-
 const people = [
   { name: 'Spongebob Squarepants' },
   { name: 'Patrick Star' },
   { name: 'Squidward Tentacles' },
 ];
 
-createManyPeople(people);
+const createManyPeople = (arrayOfPeople, done) => {
+  Person.create(arrayOfPeople, function (err, people) {
+    if (err) return console.error(err);
+
+    done(null, people);
+  });
+};
 
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/);
