@@ -114,11 +114,17 @@ const removeManyPeople = (done) => {
   const nameToRemove = 'Spongebob Squarepants';
   const targetPeople = { name: nameToRemove };
 
-  Person.deleteMany(targetPeople, function (err, result) {
+  Person.remove(targetPeople, function (err, result) {
     if (err) return console.error(err);
 
     done(null, result);
   });
+
+  // Person.deleteMany(targetPeople, function (err, result) {
+  //   if (err) return console.error(err);
+
+  //   done(null, result);
+  // });
 };
 
 const queryChain = (done) => {
