@@ -114,16 +114,16 @@ const removeManyPeople = (done) => {
   const nameToRemove = 'Spongebob Squarepants';
   const targetPeople = { name: nameToRemove };
 
-  Person.remove(targetPeople, function (err, result) {
+  Person.remove(targetPeople, function (err, response) {
     if (err) return console.error(err);
 
-    done(null, result);
+    done(null, response);
   });
 
-  // Person.deleteMany(targetPeople, function (err, result) {
+  // Person.deleteMany(targetPeople, function (err, response) {
   //   if (err) return console.error(err);
 
-  //   done(null, result);
+  //   done(null, response);
   // });
 };
 
