@@ -112,8 +112,9 @@ const removeById = (personId, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = 'Mary';
+  const targetPeople = { name: nameToRemove };
 
-  Person.remove({ name: nameToRemove }, (err, result) => {
+  Person.deleteMany(targetPeople, function (err, result) {
     if (err) return console.error(err);
 
     done(null, result);
