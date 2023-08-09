@@ -111,7 +111,7 @@ const removeById = (personId, done) => {
 };
 
 const removeManyPeople = (done) => {
-  const nameToRemove = 'Spongebob Squarepants';
+  const nameToRemove = 'Mary';
   const targetPeople = { name: nameToRemove };
 
   Person.remove(targetPeople, function (err, response) {
