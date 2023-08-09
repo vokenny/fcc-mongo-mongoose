@@ -1,5 +1,6 @@
 require('dotenv').config();
 
+const { response } = require('express');
 const mongoose = require('mongoose');
 const mongoUri = process.env.MONGO_URI;
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -130,7 +131,15 @@ const removeManyPeople = (done) => {
 const queryChain = (done) => {
   const foodToSearch = 'burrito';
 
-  done(null /*, data*/);
+  Person.find({ favoriteFoods: foodToSearch })
+    .sort({ name: 'asc' })
+    .limit(2)
+    .select('-age')
+    .exec(function (err, filteredResults) {
+      if (err) return console.error(err);
+
+      done(null, filteredResults);
+    });
 };
 
 /** **Well Done !!**
